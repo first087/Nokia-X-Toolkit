@@ -1,0 +1,19 @@
+adb shell cat /variant/cfg/variant.prop
+
+
+adb pull /variant/cfg/variant.prop
+
+
+
+-----------------
+Nokia X - Model RM-980 ("global") & RM-981 (Brazil) 
+ro.product.variant.code=059T983
+ro.product.variant.version=1.1.2.2
+
+Nokia X+ - Model RM-1053 ("global")
+ro.product.variant.code=059T9D8
+ro.product.variant.version=1.1.0.2
+
+Nokia XL - Model RM-1030 ("global") 
+ro.product.variant.code=059V6P1
+ro.product.variant.version=1.1.0.6
