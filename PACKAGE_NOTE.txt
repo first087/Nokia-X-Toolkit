@@ -1,0 +1,21 @@
+Compile! script.bat to script.exe with "Advanced BAT to EXE Converter" (Recommend v2.83+) from http://www.battoexeconverter.com/
+
+Script encoding : CP-863
+
+===== Package 3 Part =====
+
+Zip 1 - Nokia_X_Toolkit_vX.XX_Flashable_Part.zip
+- \gapps
+- \root
+
+Zip 2 - Nokia_X_Toolkit_vX.XX_Custom-Recovery_Part.zip
+- \recovery
+
+Zip 3 - Nokia_X_Toolkit_vX.XX.zip
+- \info
+- adb.exe
+- AdbWinApi.dll
+- AdbWinUsbApi.dll
+- fastboot.exe
+- run.bat
+- script.exe
