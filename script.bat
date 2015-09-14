@@ -1,6 +1,6 @@
 @echo off
 color 4e
-mode con:cols=52 lines=45
+mode con:cols=52 lines=52
 if %1==-run (
 	goto menu_work
 )
@@ -16,7 +16,7 @@ goto :eof
 cls
 echo  ÚÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄ¿
 echo  ³                                                ³
-echo  ³          Nokia X Toolkit Version 1.10          ³
+echo  ³          Nokia X Toolkit Version 1.20          ³
 echo  ³                Develop by Ethan                ³
 echo  ³             http://www.artit-k.com             ³
 echo  ³                                                ³
@@ -39,12 +39,16 @@ echo   ÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄ
 echo.
 echo   Ú Root file (Send to device) ÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄ
 echo   ³[ 1] Superuser 3.1.3   - ChainsDD
-echo   ³[ 2] SuperSU 1.94      - Chainfire
+echo   ³[ 2] SuperSU 2.01      - Chainfire
 echo   ³[ 3] Superuser 1.0.3.0 - ClockworkMod
 echo   ³[ 4] Unroot - COMING SOON!
 echo.
 echo   Ú Google Play Services file (Send to device) ÄÄÄ
 echo   ³[ 5] Install           [ 6] Uninstall
+echo.
+echo   Ú Fix Calendar Sync App file (Send to device) ÄÄ
+echo   ³[ 7] For firmware 1.1.2.2 and older
+echo   ³[ 8] For firmware 1.1.2.2 and 1.2.4.1
 echo.
 echo   Ú Recovery ÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄ
 echo   ³[11] Boot to Recovery
@@ -57,6 +61,9 @@ echo   ³[23] Root [3]+[12] *
 echo   ³
 echo   ³[25] Install   Google Play Services [5]+[12] *
 echo   ³[26] Uninstall Google Play Services [6]+[12]
+echo   ³
+echo   ³[27] Install Fix Calendar Sync App [7]+[12]
+echo   ³[28] Install Fix Calendar Sync App [8]+[12]
 echo.
 echo.
 echo    [ 0] Clean send file(s)
@@ -77,7 +84,7 @@ if %menu%==1 (
 )
 if %menu%==2 (
 	set menutext=Send file SuperSU - Chainfire
-	call :push_file root UPDATE-SuperSU-v1.94.zip
+	call :push_file root UPDATE-SuperSU-v2.01.zip
 	pause
 )
 if %menu%==3 (
@@ -93,6 +100,16 @@ if %menu%==5 (
 if %menu%==6 (
 	set menutext=Send file Uninstall Google Play
 	call :push_file gapps Nokia-X_GApps_Uninstall-signed.zip
+	pause
+)
+if %menu%==7 (
+	set menutext=Send file Fix Calendar Sync App
+	call :push_file fix CalendarProvider1122_Install-signed.zip
+	pause
+)
+if %menu%==8 (
+	set menutext=Send file Fix Calendar Sync App
+	call :push_file fix CalendarProvider1241_Install-signed.zip
 	pause
 )
 if %menu%==11 (
@@ -120,9 +137,9 @@ if %menu%==21 (
 )
 if %menu%==22 (
 	set menutext=Root by SuperSU - Chainfire
-	call :push_file root UPDATE-SuperSU-v1.94.zip
+	call :push_file root UPDATE-SuperSU-v2.01.zip
 	call :boot_cwm x
-	call :flash_zip UPDATE-SuperSU-v1.94.zip
+	call :flash_zip UPDATE-SuperSU-v2.01.zip
 	pause
 	call :like_toolkit
 )
@@ -147,6 +164,22 @@ if %menu%==26 (
 	call :push_file gapps Nokia-X_GApps_Uninstall-signed.zip
 	call :boot_cwm x
 	call :flash_zip Nokia-X_GApps_Uninstall-signed.zip
+	pause
+	call :like_toolkit
+)
+if %menu%==27 (
+	set menutext=Install Fix Calendar Sync App
+	call :push_file fix CalendarProvider1122_Install-signed.zip
+	call :boot_cwm x
+	call :flash_zip CalendarProvider1122_Install-signed.zip
+	pause
+	call :like_toolkit
+)
+if %menu%==28 (
+	set menutext=Install Fix Calendar Sync App
+	call :push_file fix CalendarProvider1241_Install-signed.zip
+	call :boot_cwm x
+	call :flash_zip CalendarProvider1241_Install-signed.zip
 	pause
 	call :like_toolkit
 )
@@ -210,8 +243,15 @@ echo.
 echo.
 echo.
 echo.
+echo.
+echo.
+echo.
+echo.
 echo             If you like Nokia X Toolkit           
 echo             Please donate to developer
+echo.
+echo.
+echo.
 echo.
 echo.
 echo.
@@ -271,9 +311,12 @@ echo.
 echo ^> Delete file^(s^)...
 adb shell rm /sdcard/Superuser-3.1.3-arm-signed.zip
 adb shell rm /sdcard/UPDATE-SuperSU-v1.94.zip
+adb shell rm /sdcard/UPDATE-SuperSU-v2.01.zip
 adb shell rm /sdcard/superuser_1.0.3.0.zip
 adb shell rm /sdcard/Nokia-X_GApps_Install-signed.zip
 adb shell rm /sdcard/Nokia-X_GApps_Uninstall-signed.zip
+adb shell rm /sdcard/CalendarProvider1122_Install-signed.zip
+adb shell rm /sdcard/CalendarProvider1241_Install-signed.zip
 goto :eof
 
 :boot_bootloader
@@ -354,7 +397,14 @@ echo.
 echo.
 echo.
 echo.
+echo.
+echo.
+echo.
+echo.
 echo                     Have fun!!
+echo.
+echo.
+echo.
 echo.
 echo.
 echo.
