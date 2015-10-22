@@ -1,6 +1,13 @@
 Compile! script.bat to script.exe with "Advanced BAT to EXE Converter" (Recommend v2.83+) from http://www.battoexeconverter.com/
 
-Script encoding : CP-863
+===== Encoding ====
+Open with Notepad++
+- Font : Courier New
+- Encoding : CP-863 or OEM xxx
+
+Open with Sublime Text
+- Font : Default or Courier New
+- Encoding : DOS (CP 437)
 
 ===== Package 3 Part =====
 
